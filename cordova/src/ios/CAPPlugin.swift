@@ -8,7 +8,7 @@
             guard let configUrl = Bundle.main.url(forResource: "capacitor.config", withExtension: "json", subdirectory: "www"),
                   let configData = try? Data(contentsOf: configUrl),
                   let json = try? JSONSerialization.jsonObject(with: configData) as? [String: [String: Any]],
-                  let pluginConfig = json?["plugins"]?[pluginName] as? [String: Any],
+                  let pluginConfig = json["plugins"]?[pluginName] as? [String: Any],
                   let pluginConfigJsObject = JSTypes.coerceDictionaryToJSObject(pluginConfig)
             else {
                 let config = CAPPluginConfig(config: JSObject())
