@@ -44,29 +44,53 @@ typealias CAPPluginCallErrorHandler = (CAPPluginCallError?) -> Void
     func save() {
         isSaved = true
     }
+    
+    func get<T>(_ key: String, _ ofType: T.Type) -> T? {
+      return self.options[key] as? T
+    }
 
-    func get<T>(_ key: String, _ ofType: T.Type, _ defaultValue: T? = nil) -> T? {
-        return self.options[key] as? T ?? defaultValue
+    func get<T>(_ key: String, _ ofType: T.Type, _ defaultValue: T) -> T {
+      return self.get(key, ofType) ?? defaultValue
     }
     
-    func getArray<T>(_ key: String, _ ofType: T.Type, _ defaultValue: [T]? = nil) -> [T]? {
-      return self.options[key] as? [T] ?? defaultValue
+    func getArray<T>(_ key: String, _ ofType: T.Type) -> [T]? {
+      return self.options[key] as? [T]
     }
     
-    func getBool(_ key: String, _ defaultValue: Bool? = nil) -> Bool? {
-      return self.options[key] as? Bool ?? defaultValue
+    func getArray<T>(_ key: String, _ ofType: T.Type, _ defaultValue: [T]) -> [T] {
+      return self.getArray(key, ofType) ?? defaultValue
     }
     
-    func getInt(_ key: String, _ defaultValue: Int? = nil) -> Int? {
-      return self.options[key] as? Int ?? defaultValue
+    func getBool(_ key: String) -> Bool? {
+      return self.options[key] as? Bool
     }
     
-    func getFloat(_ key: String, _ defaultValue: Float? = nil) -> Float? {
-      return self.options[key] as? Float ?? defaultValue
+    func getBool(_ key: String, _ defaultValue: Bool) -> Bool {
+      return self.getBool(key) ?? defaultValue
     }
     
-    func getDouble(_ key: String, _ defaultValue: Double? = nil) -> Double? {
-      return self.options[key] as? Double ?? defaultValue
+    func getInt(_ key: String) -> Int? {
+      return self.options[key] as? Int
+    }
+    
+    func getInt(_ key: String, _ defaultValue: Int) -> Int {
+      return self.getInt(key) ?? defaultValue
+    }
+    
+    func getFloat(_ key: String) -> Float? {
+      return self.options[key] as? Float
+    }
+    
+    func getFloat(_ key: String, _ defaultValue: Float) -> Float {
+        return self.getFloat(key) ?? defaultValue
+    }
+    
+    func getDouble(_ key: String) -> Double? {
+      return self.options[key] as? Double
+    }
+    
+    func getDouble(_ key: String, _ defaultValue: Double) -> Double {
+      return self.getDouble(key) ?? defaultValue
     }
     
     func getString(_ key: String) -> String? {
@@ -74,7 +98,7 @@ typealias CAPPluginCallErrorHandler = (CAPPluginCallError?) -> Void
     }
     
     func getString(_ key: String, _ defaultValue: String) -> String {
-      return self.options[key] as? String ?? defaultValue
+      return self.getString(key) ?? defaultValue
     }
     
     func getDate(_ key: String, _ defaultValue: Date? = nil) -> Date? {
@@ -88,9 +112,13 @@ typealias CAPPluginCallErrorHandler = (CAPPluginCallError?) -> Void
       return dateFormatter.date(from: isoString)
     }
     
-    func getObject(_ key: String, defaultValue: JSObject? = nil) -> JSObject? {
+    func getObject(_ key: String) -> JSObject? {
       let obj = self.options[key] as? [String:Any]
-      return obj != nil ? toJSObject(obj!) : defaultValue
+      return obj != nil ? toJSObject(obj!) : nil
+    }
+    
+    func getObject(_ key: String, defaultValue: JSObject) -> JSObject {
+      return self.getObject(key) ?? defaultValue
     }
     
     func hasOption(_ key: String) -> Bool {
