@@ -44,10 +44,8 @@
             <feature name="CapacitorCompat">
                 <param name="ios-package" value="CapacitorCompat" onload="true"/>
             </feature>
-            <preference name="deployment-target" value="13.0.0" />
-            <preference name="UseSwiftLanguageVersion" value="5"/>
+            <preference name="SwiftVersion" value="5" />
         </config-file>
-
         
         <source-file src="cordova/src/ios/CAPPlugin.swift"/>
         <source-file src="cordova/src/ios/CAPPluginCall.swift"/>
@@ -55,7 +53,7 @@
         <source-file src="cordova/src/ios/CDVConverter.swift"/>
         <source-file src="cordova/src/ios/JSTypes.swift"/>
         <source-file src="cordova/src/ios/KeyPath.swift"/>
-        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+
     </platform>
     <author email="hi@ionic.io" href="https://ionicframework.com">Ionic Team</author>
 </plugin>
