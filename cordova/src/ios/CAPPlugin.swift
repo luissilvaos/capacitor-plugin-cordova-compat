@@ -1,5 +1,11 @@
 @objc public class CAPPlugin: CDVPlugin {
     private var config: CAPPluginConfig?
+    public var bridge: CapacitorBridge?
+    
+    override public func pluginInitialize() {
+        super.pluginInitialize()
+        self.bridge = CapacitorBridge(cdvPlugin: self)
+    }
     
     func getConfig(_ pluginName: String) -> CAPPluginConfig {
         if let config = config {

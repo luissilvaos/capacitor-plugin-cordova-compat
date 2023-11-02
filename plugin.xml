@@ -47,6 +47,7 @@
             <preference name="SwiftVersion" value="5" />
         </config-file>
         
+        <source-file src="cordova/src/ios/CapacitorBridge.swift"/>
         <source-file src="cordova/src/ios/CAPPlugin.swift"/>
         <source-file src="cordova/src/ios/CAPPluginCall.swift"/>
         <source-file src="cordova/src/ios/CAPPluginConfig.swift"/>
